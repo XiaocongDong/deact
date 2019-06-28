@@ -4,3 +4,5 @@ export const DEACT_DOM = 'DEACT_DOM'
 export const DEACT_COMPONENT = 'DEACT_COMPONENT'
 // DEACT_TEXT is the pure text node
 export const DEACT_TEXT = 'DEACT_TEXT'
+// DEACT_FUNCTION_COMPONENT is deact function component
+export const DEACT_FUNCTION_COMPONENT = 'DEACT_FUNCTION_COMPONENT'

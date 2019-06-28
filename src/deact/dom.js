@@ -1,4 +1,4 @@
-import { DEACT_COMPONENT, DEACT_TEXT, DEACT_DOM } from './types'
+import { DEACT_COMPONENT, DEACT_TEXT, DEACT_DOM, DEACT_FUNCTION_COMPONENT } from './types'
 import { isListenerProp, isAttributeProp, getEventName } from './utils'
 import { checkComponentDidMount, checkComponentWillMount } from './lifeCycle'
 
@@ -77,6 +77,10 @@ export const initiate = (element) => {
     // for deact component element, we need to keep its childInstance
     Object.assign(instance, { dom: childInstance.dom, element, childInstance, publicInstance })
     return instance
+  } else if (elementType === DEACT_FUNCTION_COMPONENT) {
+    const childInstance = initiate(element.type(element.props))
+
+    return { dom: childInstance.dom, element, childInstance }
   }
 }
 

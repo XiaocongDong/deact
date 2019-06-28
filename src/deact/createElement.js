@@ -1,5 +1,6 @@
-import { DEACT_COMPONENT, DEACT_DOM, DEACT_TEXT } from './types'
+import { DEACT_COMPONENT, DEACT_DOM, DEACT_TEXT, DEACT_FUNCTION_COMPONENT } from './types'
 import { flatten, removeFalsyChildren } from './utils'
+import Component from './Component'
 
 /**
  * createElement create a deact element describes what needs to be rendered
@@ -53,10 +54,20 @@ const createElement = (type, props, ...children) => {
         children
       }
     }
-  } else {
+  } else if (type.prototype instanceof Component) {
     return {
       type,
       elementType: DEACT_COMPONENT,
+      props: {
+        ...props,
+        children
+      }
+    }
+  } else {
+    // function component
+    return {
+      type,
+      elementType: DEACT_FUNCTION_COMPONENT,
       props: {
         ...props,
         children

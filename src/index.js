@@ -57,7 +57,7 @@ class App extends deact.Component {
         </button>
         <ul>
           {
-            todos.map(({ name }) => <li onClick={() => this.removeTODO(name)}>{name}<button>-</button></li>)       
+            todos.map(({ name }) => <Todo name={name} onClick={() => this.removeTODO(name)} />)
           }
         </ul>
       </div>
@@ -88,5 +88,7 @@ class Timer extends deact.Component {
     return <div>{this.state.time}</div>
   }
 }
+
+const Todo = ({ name, onClick }) => <li onClick={onClick}>{name}<button>-</button></li>
 
 deact.render(<App stories={stories} />, document.getElementById('app'))

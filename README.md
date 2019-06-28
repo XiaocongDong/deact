@@ -36,13 +36,13 @@ deact.render(<Timer />, document.getElementById('app'))
 
 Done:
 * Class Component
+* Functional Component
 * ComponentWillMount, componentDidMount and componentWillUnmount lifecycles
 * Render
 * Brute-force reconcile
-* Asynchronous setState
+* Synchronous setState
 
 Doing:
-* Functional Component
 * Fiber reconcile
 * Asynchronous setState
 

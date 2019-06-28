@@ -1,5 +1,5 @@
 import { initiate, updateDOMProps } from './dom'
-import { DEACT_COMPONENT } from './types'
+import { DEACT_COMPONENT, DEACT_FUNCTION_COMPONENT } from './types'
 import { checkComponentWillUnmount } from './lifeCycle'
 
 /**
@@ -38,12 +38,18 @@ export const reconcile = (prevInstance, nextElement, parentNode) => {
       prevInstance.childInstance = childInstance
       prevInstance.dom = childInstance.dom
       prevInstance.element = nextElement
+    } else if (nextElement.elementType === DEACT_FUNCTION_COMPONENT) {
+      const nextChildElement = nextElement.type(nextElement.props)
+      const childInstance = reconcile(prevInstance.childInstance, nextChildElement, parentNode)
+      prevInstance.childInstance = childInstance
+      prevInstance.dom = childInstance.dom
     } else {
       // for dom type instance, update prev dom props and recursively reconcile its children
       updateDOMProps(prevInstance.element.props, nextElement.props, prevInstance.dom)
       prevInstance.element = nextElement
       reconcileChildren(prevInstance, nextElement)
     }
+
     return prevInstance
   }
 }
