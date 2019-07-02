@@ -15,3 +15,4 @@ export const removeFalsyChildren = children => {
 export const isListenerProp = name => name.startsWith('on')
 export const isAttributeProp = name => !isListenerProp(name) && name !== 'children'
 export const getEventName = name => name.toLowerCase().substring(2)
+export const arrify = val => val === null || val === undefined ? [] : Array.isArray(val) ? val : [val]

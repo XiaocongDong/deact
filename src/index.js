@@ -32,7 +32,6 @@ class App extends deact.Component {
     const { todos, value } = this.state
     return (
       <div>
-        <Timer />
         <input
           type='text'
           value={value}
@@ -57,38 +56,12 @@ class App extends deact.Component {
         </button>
         <ul>
           {
-            todos.map(({ name }) => <Todo name={name} onClick={() => this.removeTODO(name)} />)
+            todos.map(({ name }) => <li onClick={() => this.removeTODO(name)}>{name}<button>-</button></li>)
           }
         </ul>
       </div>
     )
   }
 }
-
-class Timer extends deact.Component {
-  state = {
-    time: 0
-  }
-
-  timerId = null
-
-  componentDidMount = () => {
-    this.timerId = setInterval(() => {
-      this.setState({
-        time: this.state.time + 1
-      })
-    }, 1000)
-  }
-
-  componentWillUnmount = () => {
-    clearInterval(this.timerId)
-  }
-
-  render () {
-    return <div>{this.state.time}</div>
-  }
-}
-
-const Todo = ({ name, onClick }) => <li onClick={onClick}>{name}<button>-</button></li>
 
 deact.render(<App stories={stories} />, document.getElementById('app'))

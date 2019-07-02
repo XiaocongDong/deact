@@ -1,6 +1,5 @@
-import { DEACT_COMPONENT, DEACT_DOM, DEACT_TEXT, DEACT_FUNCTION_COMPONENT } from './types'
+import { DEACT_TEXT } from './types'
 import { flatten, removeFalsyChildren } from './utils'
-import Component from './Component'
 
 /**
  * createElement create a deact element describes what needs to be rendered
@@ -10,7 +9,6 @@ import Component from './Component'
  * a deact element should be like:
  * {
  *    type: 'div',
- *    elementType: DEACT_DOM,
  *    props: {
  *      id: 'container',
  *      children: [
@@ -35,7 +33,7 @@ const createElement = (type, props, ...children) => {
   children = children.map(child => {
     if (typeof child !== 'object') {
       return {
-        elementType: DEACT_TEXT,
+        type: DEACT_TEXT,
         props: {
           nodeValue: child
         }
@@ -48,16 +46,6 @@ const createElement = (type, props, ...children) => {
   if (typeof type === 'string') {
     return {
       type,
-      elementType: DEACT_DOM,
-      props: {
-        ...props,
-        children
-      }
-    }
-  } else if (type.prototype instanceof Component) {
-    return {
-      type,
-      elementType: DEACT_COMPONENT,
       props: {
         ...props,
         children
@@ -67,7 +55,6 @@ const createElement = (type, props, ...children) => {
     // function component
     return {
       type,
-      elementType: DEACT_FUNCTION_COMPONENT,
       props: {
         ...props,
         children

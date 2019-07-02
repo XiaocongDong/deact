@@ -1,4 +1,4 @@
-import { render } from './dom'
+import { render } from './fiber'
 import Component from './Component'
 import createElement from './createElement'
 
