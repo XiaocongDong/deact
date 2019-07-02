@@ -40,7 +40,7 @@ Done:
 * ComponentWillMount, componentDidMount and componentWillUnmount lifecycles
 * Render
 * Brute-force reconcile
-* Synchronous setState
+* Synchronous setState [stack-reconciler branch]
 * Fiber reconcile
 
 Doing:
