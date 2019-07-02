@@ -41,9 +41,9 @@ Done:
 * Render
 * Brute-force reconcile
 * Synchronous setState
+* Fiber reconcile
 
 Doing:
-* Fiber reconcile
 * Asynchronous setState
 
 Maybe:
